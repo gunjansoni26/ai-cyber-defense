@@ -1,15 +1,56 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>AI Cyber Defense Dashboard</title>
+    <title>AI SOC Dashboard</title>
+    <meta http-equiv="refresh" content="5">
+
+    <style>
+        body {
+            background: #0d1117;
+            color: #00ff88;
+            font-family: monospace;
+        }
+
+        h1 {
+            text-align: center;
+            color: #00ffcc;
+        }
+
+        .log {
+            padding: 10px;
+            border-bottom: 1px solid #333;
+        }
+
+        .alert {
+            color: red;
+            font-weight: bold;
+        }
+
+        .normal {
+            color: #00ff88;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Cyber Defense System</h1>
+    <h1>🛡️ AI Cyber SOC Dashboard</h1>
 
-    <h3>Live Logs</h3>
-
-    <div>
-        {{ tables|safe }}
+    <div class="container">
+        {% for item in logs %}
+            <div class="log">
+                {% if item.alert %}
+                    <span class="alert">🚨 {{ item.log }}</span>
+                {% else %}
+                    <span class="normal">{{ item.log }}</span>
+                {% endif %}
+            </div>
+        {% endfor %}
     </div>
+
 </body>
 </html>
